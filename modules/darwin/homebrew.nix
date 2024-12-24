@@ -40,6 +40,7 @@
       "grep"
       "grpc"
       "helm"
+      "k9s"
       "jq"
       "kubernetes-cli"
       "ldns"
@@ -90,7 +91,6 @@
     casks = [
       "alfred"
       "bettertouchtool"
-      "brave-browser"
       "font-cascadia-code"
       "font-monaspace"
       "intellij-idea"
@@ -98,7 +98,6 @@
       "microsoft-auto-update"
       "microsoft-edge"
       "microsoft-teams"
-      "vivaldi"
       "yubico-yubikey-manager"
       "zen-browser"
     ];

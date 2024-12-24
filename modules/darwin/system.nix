@@ -5,7 +5,6 @@
     neovim
     home-manager
     tmux
-    nushell
     fzf
     zoxide
     nodejs
@@ -13,9 +12,7 @@
     python3
     alacritty
     temurin-bin
+    gradle
     yabai
   ];
-
-  # Enable zsh
-  programs.zsh.enable = true;
 }

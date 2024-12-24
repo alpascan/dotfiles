@@ -10,7 +10,7 @@
 
   # Basic configuration
   nixpkgs.config.allowUnfree = true;
-  users.users.${username}.home = "/Users/${username}";
+ #  users.users.${username}.home = "/Users/${username}";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = 5;
 }

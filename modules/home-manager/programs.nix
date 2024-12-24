@@ -17,5 +17,8 @@
     bat.enable = true;
     fzf.enable = true;
     zoxide.enable = true;
+    nushell = {
+        enable = true;
+      };
   };
 }
