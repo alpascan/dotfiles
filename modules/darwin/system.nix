@@ -2,7 +2,6 @@
 { pkgs, ... }: {
   # System packages
   environment.systemPackages = with pkgs; [
-    neovim
     home-manager
     tmux
     fzf

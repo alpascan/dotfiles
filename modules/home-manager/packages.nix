@@ -5,8 +5,8 @@
     ripgrep
     fd
     jq
-    bat
-    xonsh
+    neovim
+    zoxide
     lazygit
     # Add more packages here
   ];

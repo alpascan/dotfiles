@@ -14,13 +14,19 @@
     };
 
     # Terminal utilities
-    bat.enable = true;
     fzf.enable = true;
     zoxide.enable = true;
     nushell = {
         enable = true;
-        configFile.source = ./dotfiles/nushell/nushell.nu;
-
+        configFile.source = ./../../dotfiles/nushell/config.nu;
       };
   };
+
+    # Dotfile linking for programs that don't allow changing the config location
+    home.file = {
+        ".config/nvim" = {
+          source = ../../dotfiles/nvim;
+          recursive = true;
+        };
+      };
 }
