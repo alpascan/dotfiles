@@ -6,9 +6,8 @@
     fd
     jq
     bat
-    nushell
+    xonsh
     lazygit
-    floorp
     # Add more packages here
   ];
 }

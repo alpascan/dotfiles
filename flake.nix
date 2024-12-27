@@ -41,7 +41,7 @@
     # Home Manager Configuration
     homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [ ./modules/home-manager ];
+      modules = [ ./modules/home-manager/workMac.nix ];
     };
 
     # This is needed for home-manager

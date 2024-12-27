@@ -97,6 +97,7 @@
       "iterm2"
       "microsoft-auto-update"
       "microsoft-edge"
+      "orion"
       "microsoft-teams"
       "yubico-yubikey-manager"
       "zen-browser"

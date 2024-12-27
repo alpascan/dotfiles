@@ -19,6 +19,8 @@
     zoxide.enable = true;
     nushell = {
         enable = true;
+        configFile.source = ./dotfiles/nushell/nushell.nu;
+
       };
   };
 }
