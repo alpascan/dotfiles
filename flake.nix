@@ -1,6 +1,5 @@
 {
   description = "Darwin System & Home Manager Configuration";
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     darwin = {
@@ -16,7 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-
   outputs = { self, nixpkgs, darwin, home-manager, nix-homebrew, ... }:
   let
     system = "aarch64-darwin";
@@ -37,13 +35,13 @@
         }
       ];
     };
-
     # Home Manager Configuration
     homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [ ./modules/home-manager/workMac.nix ];
+      modules = [
+        ./modules/home-manager/workMac.nix
+      ];
     };
-
     # This is needed for home-manager
     defaultPackage.${system} = home-manager.defaultPackage.${system};
   };

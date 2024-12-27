@@ -5,9 +5,13 @@
     ripgrep
     fd
     jq
+    tmux
+    git
+    oh-my-posh
     neovim
     zoxide
     lazygit
+    carapace
     # Add more packages here
   ];
 }

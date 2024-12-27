@@ -14,11 +14,28 @@
     };
 
     # Terminal utilities
-    fzf.enable = true;
-    zoxide.enable = true;
+    zoxide = {
+      enable = true;
+      enableNushellIntegration = true;
+    };
+    # Terminal utilities
+    carapace = {
+      enable = true;
+      enableNushellIntegration = true;
+    };
+
+
+
+    oh-my-posh = {
+      enable = true;
+      useTheme = "peru";
+    };
     nushell = {
         enable = true;
         configFile.source = ./../../dotfiles/nushell/config.nu;
+        environmentVariables = {
+            HOME_MANAGER_FLAKE = "/Users/alexandru.pascan/.config/nix";
+        };
       };
   };
 
