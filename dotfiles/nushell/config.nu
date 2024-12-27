@@ -4,7 +4,6 @@
 #nushell config
 $env.config.edit_mode = "vi"
 $env.show_banner = false
-$env.HOME_MANAGER_FLAKE = "/Users/alexandru.pascan/.config/nix"
 
 # Language settings
 $env.LANG = "en_US.UTF-8"

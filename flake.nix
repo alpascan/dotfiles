@@ -2,7 +2,7 @@
   description = "Darwin System & Home Manager Configuration";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    darwin = {
+    nix-darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -15,34 +15,44 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, darwin, home-manager, nix-homebrew, ... }:
+
+  outputs = { self, nixpkgs, nix-darwin, home-manager, nix-homebrew, ... }:
   let
-    system = "aarch64-darwin";
-    username = "alexandru.pascan";
-    pkgs = nixpkgs.legacyPackages.${system};
+    work = {
+      name = "workMac";
+      system = "aarch64-darwin";
+      username = "alexandru.pascan";
+      homeDirectory = "/Users/${work.username}";
+      pkgs = nixpkgs.legacyPackages.${work.system};
+    };
   in
   {
-    # Darwin System Configuration
-    darwinConfigurations."workMac" = darwin.lib.darwinSystem {
-      inherit system;
+    darwinConfigurations.${work.name} = nix-darwin.lib.darwinSystem {
+      inherit (work) system;
       modules = [ 
         nix-homebrew.darwinModules.nix-homebrew
         ./modules/darwin
         {
           _module.args = {
-            inherit username;
+            inherit (work) username homeDirectory;
           };
         }
       ];
     };
-    # Home Manager Configuration
-    homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
+
+    homeConfigurations.${work.username} = home-manager.lib.homeManagerConfiguration {
+      inherit (work) pkgs;
       modules = [
+        {
+          home = {
+            inherit (work) username homeDirectory;
+          };
+          _module.args = {
+            inherit (work) username homeDirectory;
+          };
+        }
         ./modules/home-manager/workMac.nix
       ];
     };
-    # This is needed for home-manager
-    defaultPackage.${system} = home-manager.defaultPackage.${system};
   };
 }

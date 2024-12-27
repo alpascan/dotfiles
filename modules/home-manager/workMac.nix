@@ -6,11 +6,9 @@
   ];
 
   home = {
-    username = "alexandru.pascan";
-    homeDirectory = "/Users/alexandru.pascan";
     stateVersion = "23.11";
     sessionVariables = {
-      HOME_MANAGER_FLAKE = "${builtins.toString ./..}";
+      HOME_MANAGER_FLAKE = "${config.home.homeDirectory}/.config/nix";
     };
   };
 

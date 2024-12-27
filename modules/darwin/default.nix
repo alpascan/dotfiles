@@ -11,6 +11,11 @@
   # Basic configuration
   nixpkgs.config.allowUnfree = true;
  #  users.users.${username}.home = "/Users/${username}";
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nix.settings = {
+    allow-import-from-derivation = true;
+    experimental-features = [ "nix-command" "flakes" ];
+    pure-eval = false;  # This is what we want
+  };
   system.stateVersion = 5;
 }

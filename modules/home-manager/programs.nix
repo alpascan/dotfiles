@@ -1,5 +1,9 @@
-# modules/home-manager/programs.nix
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }: 
+let 
+    flakePath = "${config.home.homeDirectory}/.config/nix";
+    dotfiles = "${flakePath}/dotfiles";
+in 
+{
   programs = {
     git = {
       enable = true;
@@ -12,38 +16,46 @@
         push.autoSetupRemote = true;
       };
     };
-
+    
     # Terminal utilities
     zoxide = {
       enable = true;
       enableNushellIntegration = true;
     };
-    # Terminal utilities
+    
     carapace = {
       enable = true;
       enableNushellIntegration = true;
     };
-
-
-
+    
     oh-my-posh = {
       enable = true;
-      useTheme = "peru";
+      useTheme = "emodipt-extend";
     };
+    
     nushell = {
-        enable = true;
-        configFile.source = ./../../dotfiles/nushell/config.nu;
-        environmentVariables = {
-            HOME_MANAGER_FLAKE = "/Users/alexandru.pascan/.config/nix";
-        };
-      };
+      enable = true;
+      extraEnv = ''
+        $env.HOME_MANAGER_FLAKE = "${flakePath}";
+        $env.NIX_PATH = "darwin=${flakePath}"
+        source "${dotfiles}/nushell/env.nu"  # Source our symlinked config
+      '';
+      extraConfig = ''
+        source "${dotfiles}/nushell/config.nu"  # Source our symlinked config
+      '';
+    };
   };
-
-    # Dotfile linking for programs that don't allow changing the config location
-    home.file = {
-        ".config/nvim" = {
-          source = ../../dotfiles/nvim;
-          recursive = true;
-        };
-      };
+  
+  # Dotfile linking for programs that don't allow changing the config location
+   home.file = {
+    # Nushell configs
+    ".config/nushell/env.nu".source = 
+      config.lib.file.mkOutOfStoreSymlink "${dotfiles}/nushell/env.nu";
+    ".config/nushell/config.nu".source = 
+      config.lib.file.mkOutOfStoreSymlink "${dotfiles}/nushell/config.nu";
+    
+    # Neovim config
+    ".config/nvim".source = 
+      config.lib.file.mkOutOfStoreSymlink "${dotfiles}/nvim";
+  };
 }
