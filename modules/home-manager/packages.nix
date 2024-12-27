@@ -11,7 +11,6 @@
     neovim
     zoxide
     lazygit
-    carapace
     # Add more packages here
   ];
 }

@@ -1,9 +1,14 @@
 { config, pkgs, ... }: 
 let 
-    flakePath = "${config.home.homeDirectory}/.config/nix";
-    dotfiles = "${flakePath}/dotfiles";
+  flakePath = "${config.home.homeDirectory}/.config/nix";
+  dotfiles = "${flakePath}/dotfiles";
 in 
 {
+  xdg = {
+    enable = true;
+    configHome = "${config.home.homeDirectory}/.config";
+  };
+
   programs = {
     git = {
       enable = true;
@@ -35,27 +40,20 @@ in
     
     nushell = {
       enable = true;
+      configFile.source = ./../../dotfiles/nushell/config.nu;
       extraEnv = ''
-        $env.HOME_MANAGER_FLAKE = "${flakePath}";
+        $env.HOME_MANAGER_FLAKE = "${flakePath}"
         $env.NIX_PATH = "darwin=${flakePath}"
-        source "${dotfiles}/nushell/env.nu"  # Source our symlinked config
+        $env.XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config"
       '';
-      extraConfig = ''
-        source "${dotfiles}/nushell/config.nu"  # Source our symlinked config
-      '';
+  
     };
   };
-  
-  # Dotfile linking for programs that don't allow changing the config location
-   home.file = {
-    # Nushell configs
-    ".config/nushell/env.nu".source = 
-      config.lib.file.mkOutOfStoreSymlink "${dotfiles}/nushell/env.nu";
-    ".config/nushell/config.nu".source = 
-      config.lib.file.mkOutOfStoreSymlink "${dotfiles}/nushell/config.nu";
-    
-    # Neovim config
-    ".config/nvim".source = 
-      config.lib.file.mkOutOfStoreSymlink "${dotfiles}/nvim";
+
+   # Link all dotfiles folders to .config
+    xdg.configFile = {
+    "nvim".source = config.lib.file.mkOutOfStoreSymlink ./../../dotfiles/nvim;
+    "nushell".source = config.lib.file.mkOutOfStoreSymlink ./../../dotfiles/nushell;
+    # Add other folders as needed
   };
 }
