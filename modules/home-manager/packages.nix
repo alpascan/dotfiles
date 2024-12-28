@@ -11,6 +11,8 @@
     neovim
     zoxide
     lazygit
+    nushell
+    fish
     # Add more packages here
   ];
 }

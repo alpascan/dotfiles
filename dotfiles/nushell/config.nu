@@ -41,14 +41,3 @@ def open [path: any] {
         xdg-open $path 
     }
 }
-
-# Dynamically set the config and env paths from the HOME_MANAGER_FLAKE environment variable
-let configPath = ($env.HOME_MANAGER_FLAKE | path join "dotfiles/nushell/config.nu")
-let envPath = ($env.HOME_MANAGER_FLAKE | path join "dotfiles/nushell/env.nu")
-
-# Set the config and env paths for Nushell
-$nu.config-path = $configPath
-$nu.env-path = $envPath
-
-
-config reset
