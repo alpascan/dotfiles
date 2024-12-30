@@ -41,7 +41,7 @@
       enable = true;
       enableNushellIntegration = true;
       enableFishIntegration = true;
-      useTheme = "emodipt-extend";
+      settings = builtins.fromJSON (builtins.readFile ../../../dotfiles/oh-my-posh/monokai.omp.json);
     };
   };
 }
