@@ -18,7 +18,9 @@
     ] ++ paths; 
     shellAliases = {
       hmu = "home-manager switch --flake ${flakeRoot}#${config.home.username}";
+      hbu = "home-manager buind --flake ${flakeRoot}#${config.home.username}";
       dru = "darwin-rebuild switch --flake ${flakeRoot}#${machineName}";
+      dbu = "darwin-rebuild build --flake ${flakeRoot}#${machineName}";
       # Add shell aliases here
     };
   };
