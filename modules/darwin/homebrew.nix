@@ -13,9 +13,6 @@
     taps = [
       "aws/tap"
       "datawire/blackbird"
-      "dwarvesf/tap"
-      "homebrew/cask"
-      "homebrew/core"
       "homebrew/services"
       "koekeishiya/formulae"
     ];
@@ -94,6 +91,7 @@
       "microsoft-teams"
       "yubico-yubikey-manager"
       "zen-browser"
+      "ghostty"
     ];
 
     onActivation.cleanup = "zap";

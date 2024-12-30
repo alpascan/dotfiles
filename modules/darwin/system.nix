@@ -1,14 +1,9 @@
 # modules/darwin/system.nix
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   # System packages
   environment.systemPackages = with pkgs; [
-    home-manager
     fzf
-    nodejs
-    python3
-    alacritty
-    temurin-bin
-    gradle
     yabai
   ];
+
 }

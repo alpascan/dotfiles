@@ -15,19 +15,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-
-  outputs = { self, nixpkgs, nix-darwin, home-manager, nix-homebrew, ... }:
+  outputs = { self, nixpkgs, nix-darwin, home-manager, nix-homebrew, ... }@inputs:
   let
     work = {
-      name = "workMac";
+      machineName = "workMac";
       system = "aarch64-darwin";
       username = "alexandru.pascan";
       homeDirectory = "/Users/${work.username}";
+      flakeRoot = "${work.homeDirectory}/.config/nix";
       pkgs = nixpkgs.legacyPackages.${work.system};
+      paths = import ./modules/darwin/paths.nix;
     };
   in
   {
-    darwinConfigurations.${work.name} = nix-darwin.lib.darwinSystem {
+    darwinConfigurations.${work.machineName} = nix-darwin.lib.darwinSystem {
       inherit (work) system;
       modules = [ 
         nix-homebrew.darwinModules.nix-homebrew
@@ -35,11 +36,11 @@
         {
           _module.args = {
             inherit (work) username homeDirectory;
+            inherit inputs;  # Pass inputs through
           };
         }
       ];
     };
-
     homeConfigurations.${work.username} = home-manager.lib.homeManagerConfiguration {
       inherit (work) pkgs;
       modules = [
@@ -48,10 +49,11 @@
             inherit (work) username homeDirectory;
           };
           _module.args = {
-            inherit (work) username homeDirectory;
+            inherit (work) username homeDirectory paths flakeRoot machineName;
+            inherit inputs;  # Pass inputs through
           };
         }
-        ./modules/home-manager/workMac.nix
+        ./modules/home-manager
       ];
     };
   };
