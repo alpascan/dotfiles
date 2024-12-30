@@ -1,16 +1,18 @@
 # modules/darwin/default.nix
 { config, pkgs, lib, username, ... }: {
   imports = [
+    ./../common/packages.nix
+    # MacOS specific packages
     ./system.nix
     ./homebrew.nix
-    # If you have a nix-homebrew module, import it here
-    # For example:
-    # "${inputs.nix-homebrew}/darwin-module.nix"
+  
   ];
 
   # Basic configuration
   nixpkgs.config.allowUnfree = true;
- #  users.users.${username}.home = "/Users/${username}";
+
+  # Nix specific path
+  environment.systemPath = import ./paths.nix;
 
   nix.settings = {
     allow-import-from-derivation = true;
