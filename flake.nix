@@ -1,6 +1,7 @@
 {
   description = "Darwin System & Home Manager Configuration";
   inputs = {
+    # Hihger level inputs
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin = {
       url = "github:lnl7/nix-darwin";
@@ -14,6 +15,7 @@
       url = "github:zhaofengli-wip/nix-homebrew";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
   };
   outputs = { self, nixpkgs, nix-darwin, home-manager, nix-homebrew, ... }@inputs:
   let

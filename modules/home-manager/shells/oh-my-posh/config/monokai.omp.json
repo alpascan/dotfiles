@@ -26,12 +26,12 @@
                     "foreground": "#F92672",
                     "properties": {
                         "mapped_shell_names": {
-                            "pwsh": "PowerShell",
-                            "powershell": "PowerShell",
-                            "cmd": "Cmd",
-                            "bash": "Bash",
-                            "nu": "Nushell",
-                            "fish": "Fish"
+                            "pwsh": "PS",
+                            "powershell": "PS",
+                            "cmd": "cmd",
+                            "bash": "bash",
+                            "nu": "nu",
+                            "fish": "fish"
                         }
                     },
                     "template": " \ue795 {{ .Name }} "

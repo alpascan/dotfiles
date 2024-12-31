@@ -9,6 +9,9 @@
     ./oh-my-posh
     ./carapace
     ./zoxide
+
+    # multiplexer
+    ./zellij
   ];
   home = {
     packages = with pkgs; [
@@ -18,6 +21,7 @@
     oh-my-posh
     carapace
     zoxide
+    tmux
     ];
     sessionPath = [
       "${config.home.homeDirectory}/.nix-profile/bin"  # home-manager path first
