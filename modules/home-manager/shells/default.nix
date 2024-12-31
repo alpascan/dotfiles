@@ -14,15 +14,7 @@
     ./zellij
   ];
   home = {
-    packages = with pkgs; [
-    # Terminal shell
-    nushell
-    # Plugins
-    oh-my-posh
-    carapace
-    zoxide
-    tmux
-    ];
+    
     sessionPath = [
       "${config.home.homeDirectory}/.nix-profile/bin"  # home-manager path first
     ] ++ paths; 
