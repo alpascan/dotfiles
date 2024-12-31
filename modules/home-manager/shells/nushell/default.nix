@@ -1,4 +1,4 @@
-# modules/home-manager/nushell.nix
+# nushell nix file
 { config, pkgs, paths, ... }: {
   programs.nushell = {
     enable = true;
@@ -11,7 +11,7 @@
     '';
     
     extraConfig = ''
-      source ${config.home.homeDirectory}/.config/nushell/config.nu
+      source ${./config/config.nu};
     '';
   };
 }

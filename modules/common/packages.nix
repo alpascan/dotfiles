@@ -13,9 +13,13 @@
     temurin-bin
     gradle
   ];
+  environment.shells = with pkgs; [ fish ];
 
   programs.fish.enable = true;
+
   users.users.${username}.shell = pkgs.fish;
+  programs.fish.useBabelfish = false;
+
 
 
 }
