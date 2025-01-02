@@ -12,6 +12,7 @@
 
     # multiplexer
     ./zellij
+    ./tmux
   ];
   home = {
     
