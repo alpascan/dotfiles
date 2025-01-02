@@ -28,9 +28,14 @@
       dru = "darwin-rebuild switch --flake ${flakeRoot}#${machineName}";
       dbu = "darwin-rebuild build --flake ${flakeRoot}#${machineName}";
 
+      # nvim aliases
       v = "nvim";
       vi = "nvim";
       vim = "nvim";
+
+      # tooling
+      ll = "ls -la";
+      
       
       # git common aliases
       # Common git commands

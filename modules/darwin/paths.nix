@@ -1,5 +1,7 @@
 # modules/darwin/paths.nix
 [
+
+  # local paths
   # Nix/Darwin paths (highest priority after home-manager)
   "/run/current-system/sw/bin"
   "/nix/var/nix/profiles/default/bin"
@@ -14,4 +16,6 @@
   "/usr/sbin"
   "/bin"
   "/sbin"
+
+  
 ]
