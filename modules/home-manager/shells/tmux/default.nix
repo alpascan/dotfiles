@@ -39,8 +39,7 @@
           
           # Status modules
           set -g @catppuccin_status_modules_right "user host uptime date_time"          
-          set -g @catppuccin_date_time_text "
-          %d-%m-%Y"
+          set -g @catppuccin_date_time_text "%Y-%m-%d"
           
           # Status colors
           set -g @catppuccin_directory_color "#7BD88F"

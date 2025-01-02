@@ -27,10 +27,14 @@
       # nix-darwin aliases
       dru = "darwin-rebuild switch --flake ${flakeRoot}#${machineName}";
       dbu = "darwin-rebuild build --flake ${flakeRoot}#${machineName}";
+
+      v = "nvim";
+      vi = "nvim";
+      vim = "nvim";
       
       # git common aliases
       # Common git commands
-       g = "git";
+      g = "git";
       ga = "git add";
       gaa = "git add --all";
       gb = "git branch";
