@@ -1,0 +1,9 @@
+credentials_location='/Users/alexandru.pascan/.aws_credentials.env'
+unset AWS_VAULT
+aws-vault clear 
+
+AWS_SESSION_JSON=$(aws-vault exec prod-k8s-operator -j)
+echo AWS_ACCESS_KEY_ID=`echo $AWS_SESSION_JSON | jq .AccessKeyId -r` > $credentials_location
+echo AWS_SECRET_ACCESS_KEY=`echo $AWS_SESSION_JSON | jq .SecretAccessKey -r` >> $credentials_location
+echo AWS_SECURITY_TOKEN=`echo $AWS_SESSION_JSON | jq .SessionToken -r` >> $credentials_location
+

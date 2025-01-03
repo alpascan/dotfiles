@@ -59,6 +59,9 @@
           # Additional highlighting
           set -g @catppuccin_pane_border_style "fg=#363537"
           set -g @catppuccin_pane_active_border_style "fg=#FC618D"
+
+          # styling
+          set -g @catppuccin_window_status_style basic
         '';
       }
     ];

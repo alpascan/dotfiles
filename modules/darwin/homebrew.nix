@@ -92,6 +92,7 @@
       "yubico-yubikey-manager"
       "zen-browser"
       "ghostty"
+      "cursor"
     ];
 
     onActivation.cleanup = "zap";

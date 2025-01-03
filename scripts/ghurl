@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Get the current branch name
+BRANCH=$(git symbolic-ref --short HEAD)
+
+# Get the repository's remote origin URL
+REPO_URL=$(git config --get remote.origin.url)
+
+# Extract the repository owner and name from the URL
+# This works for URLs in formats like:
+# - git@github.com:owner/repo.git
+# - https://github.com/owner/repo.git
+
+if [[ $REPO_URL =~ github.com[:/](.+)/(.+)\.git ]]; then
+  OWNER=${BASH_REMATCH[1]}
+  REPO=${BASH_REMATCH[2]}
+else
+  echo "Failed to parse GitHub repository URL"
+  exit 1
+fi
+
+# Construct the PR comparison URL
+COMPARE_URL="https://github.com/$OWNER/$REPO/compare/main...$BRANCH"
+
+# Open the URL in the default browser
+echo "Opening PR comparison URL: $COMPARE_URL"
+open "$COMPARE_URL" # macOS command; use `xdg-open` for Linux or `start` for Windows

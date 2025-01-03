@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Get the current folder name
+FOLDER_NAME=${PWD##*/}
+
+# Get the current Git branch name
+GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# Open the URL in the browser
+URL="https://jenkins-bam-master.intra.nexthink.com/job/${FOLDER_NAME}/job/${GIT_BRANCH}/"
+echo "Opening: $URL"
+open "$URL" 2>/dev/null

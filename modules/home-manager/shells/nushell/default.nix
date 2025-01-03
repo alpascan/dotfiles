@@ -14,6 +14,8 @@
       source ${./config/config.nu};
 
       source ${./config/aliases.nu};
+
+      awi
     '';
   };
 }
