@@ -36,7 +36,10 @@
                     "background": "#78DCE8",
                     "foreground": "#2D2A2E",
                     "properties": {
-                        "style": "full"
+                            "style": "agnoster_short",
+                            "folder_icon": "\ue5ff",
+                            "folder_separator_icon": " \uf054 ",
+                            "home_icon": "\ueb06"
                     },
                     "style": "diamond",
                     "template": " {{ .Path }} ",
@@ -162,13 +165,25 @@
                 }
             ],
             "type": "prompt"
+        },
+        {
+            "alignment": "left",
+            "segments": [
+                {
+                    "background": "transparent",
+                    "foreground": "#78DCE8",
+                    "template": "\u276f"   
+                }
+            ],
+            "type": "prompt"
+        
         }
     ],
-    "final_space": true,
+    "final_space": false,
     "version": 3,
     "transient_prompt": {
         "background": "transparent",
-        "foreground": "#FCFCFA",
-        "template": " -> "
+        "foreground": "#78DCE8",
+        "template": "\u276f"
     }
 }

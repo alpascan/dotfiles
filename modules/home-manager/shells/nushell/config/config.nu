@@ -150,9 +150,16 @@ $env.config = {
     }
     }
 
+    cursor_shape: {
+        vi_insert: "line"
+        vi_normal: "block"
+    }
+
     filesize: {
     metric: true
     format: "auto"
     }
-
 }
+
+$env.PROMPT_INDICATOR_VI_INSERT = "❯ "
+$env.PROMPT_INDICATOR_VI_NORMAL = "❮ "
