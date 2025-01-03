@@ -1,84 +1,94 @@
+let bg_color = "#212121"
+let fg_color = "#F7F0FF"
+let red = "#FB618D"
+let green = "#7BD78E"
+let yellow = "#FBE566"
+let orange = "#FC9253"
+let purple = "#948AE2"
+let blue = "#5AD3E5"
+let muted_gray = "#69666C"
+
 let monokai_theme = {
-    separator: "#F8F8F2"
+    separator: $fg_color
     leading_trailing_space_bg: { attr: "n" }
-    header: { fg: "#A6E22E" attr: "b" }
-    empty: "#66D9EF"
-    bool: {|| if $in { "#FD971F" } else { "#75715E" } }
-    int: "#F8F8F2"
+    header: { fg: $green attr: "b" }
+    empty: $blue
+    bool: {|| if $in { $orange } else { $muted_gray } }
+    int: $fg_color
     filesize: {|e|
         if $e == 0b {
-            "#F8F8F2"
+            $fg_color
         } else if $e < 1mb {
-            "#66D9EF"
-        } else {{ fg: "#AE81FF" }}
+            $blue
+        } else {{ fg: $purple }}
     }
-    duration: "#F8F8F2"
+    duration: $fg_color
     date: {|| (date now) - $in |
         if $in < 1hr {
-            { fg: "#F92672" attr: "b" }
+            { fg: $red attr: "b" }
         } else if $in < 6hr {
-            "#F92672"
+            $red
         } else if $in < 1day {
-            "#FD971F"
+            $orange
         } else if $in < 3day {
-            "#A6E22E"
+            $green
         } else if $in < 1wk {
-            { fg: "#A6E22E" attr: "b" }
+            { fg: $green attr: "b" }
         } else if $in < 6wk {
-            "#66D9EF"
+            $blue
         } else if $in < 52wk {
-            "#AE81FF"
-        } else { "#75715E" }
+            $purple
+        } else { $muted_gray }
     }
-    range: "#F8F8F2"
-    float: "#F8F8F2"
-    string: "#E6DB74"
-    nothing: "#75715E"
-    binary: "#F8F8F2"
-    cellpath: "#F8F8F2"
-    row_index: { fg: "#A6E22E" attr: "b" }
-    record: "#F8F8F2"
-    list: "#F8F8F2"
-    block: "#F8F8F2"
-    hints: "#75715E"
-    search_result: { fg: "#F8F8F2" bg: "#F92672" }
+    range: $fg_color
+    float: $fg_color
+    string: $orange
+    nothing: $muted_gray
+    binary: $fg_color
+    cellpath: $fg_color
+    row_index: { fg: $green attr: "b" }
+    record: $fg_color
+    list: $fg_color
+    block: $fg_color
+    hints: $muted_gray
+    search_result: { fg: $fg_color bg: $red }
 
-    shape_and: { fg: "#F92672" attr: "b" }
-    shape_binary: { fg: "#F92672" attr: "b" }
-    shape_block: { fg: "#AE81FF" attr: "b" }
-    shape_bool: "#FD971F"
-    shape_custom: "#A6E22E"
-    shape_datetime: { fg: "#66D9EF" attr: "b" }
-    shape_directory: "#66D9EF"
-    shape_external: "#66D9EF"
-    shape_externalarg: { fg: "#A6E22E" attr: "b" }
-    shape_filepath: "#66D9EF"
-    shape_flag: { fg: "#AE81FF" attr: "b" }
-    shape_float: { fg: "#F92672" attr: "b" }
-    shape_garbage: { fg: "#F8F8F2" bg: "#F92672" attr: "b" }
-    shape_globpattern: { fg: "#66D9EF" attr: "b" }
-    shape_int: { fg: "#F92672" attr: "b" }
-    shape_internalcall: { fg: "#66D9EF" attr: "b" }
-    shape_list: { fg: "#66D9EF" attr: "b" }
-    shape_literal: { fg: "#F92672" attr: "b" }
-    shape_match_pattern: "#A6E22E"
+    shape_and: { fg: $red attr: "b" }
+    shape_binary: { fg: $red attr: "b" }
+    shape_block: { fg: $purple attr: "b" }
+    shape_bool: $orange
+    shape_custom: $green
+    shape_datetime: { fg: $blue attr: "b" }
+    shape_directory: $blue
+    shape_external: $blue
+    shape_externalarg: { fg: $green attr: "b" }
+    shape_filepath: $blue
+    shape_flag: { fg: $purple attr: "b" }
+    shape_float: { fg: $red attr: "b" }
+    shape_garbage: { fg: $fg_color bg: $red attr: "b" }
+    shape_globpattern: { fg: $blue attr: "b" }
+    shape_int: { fg: $red attr: "b" }
+    shape_internalcall: { fg: $blue attr: "b" }
+    shape_list: { fg: $blue attr: "b" }
+    shape_literal: { fg: $red attr: "b" }
+    shape_match_pattern: $green
     shape_matching_brackets: { attr: "u" }
-    shape_nothing: "#66D9EF"
-    shape_operator: "#FD971F"
-    shape_or: { fg: "#F92672" attr: "b" }
-    shape_pipe: { fg: "#F92672" attr: "b" }
-    shape_range: { fg: "#FD971F" attr: "b" }
-    shape_record: { fg: "#66D9EF" attr: "b" }
-    shape_redirection: { fg: "#F92672" attr: "b" }
-    shape_signature: { fg: "#A6E22E" attr: "b" }
-    shape_string: "#E6DB74"
-    shape_string_interpolation: { fg: "#66D9EF" attr: "b" }
-    shape_table: { fg: "#AE81FF" attr: "b" }
-    shape_variable: "#F92672"
+    shape_nothing: $blue
+    shape_operator: $orange
+    shape_or: { fg: $red attr: "b" }
+    shape_pipe: { fg: $red attr: "b" }
+    shape_range: { fg: $orange attr: "b" }
+    shape_record: { fg: $blue attr: "b" }
+    shape_redirection: { fg: $red attr: "b" }
+    shape_signature: { fg: $green attr: "b" }
+    shape_string: $orange
+    shape_string_interpolation: { fg: $blue attr: "b" }
+    shape_table: { fg: $purple attr: "b" }
+    shape_variable: $red
 
-    background: "#272822"
-    foreground: "#F8F8F2"
-    cursor: "#F8F8F2"
+    background: $bg_color
+    foreground: $fg_color
+    cursor: $fg_color
 }
   
   

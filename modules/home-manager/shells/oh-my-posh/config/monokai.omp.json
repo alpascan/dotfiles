@@ -6,24 +6,129 @@
             "newline": true,
             "segments": [
                 {
-                    "foreground": "#F8F8F2",
-                    "style": "plain",
+                    "leading_diamond": "\ue0b6",
+                    "background": "#2D2A2E",
+                    "foreground": "#FCFCFA",
+                    "style": "diamond",
                     "template": "{{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
                     "type": "os"
-                  },
+                },
                 {
-                    "foreground": "#FFD866",
+                    "background": "#FFD866",
+                    "foreground": "#2D2A2E",
                     "properties": {
                         "time_format": "15:04"
                     },
-                    "style": "plain",
-                    "template": "{{ .CurrentDate | date .Format }}",
+                    "style": "diamond",
+                    "trailing_diamond": "\uE0B4 ",
+                    "template": " {{ .CurrentDate | date .Format }}",
                     "type": "time"
                 },
                 {
+                    "style": "diamond",
+                    "background": "#2D2A2E",
+                    "foreground": "#78DCE8",
+                    "template": "\uf07c ",
+                    "leading_diamond": "\ue0b6",
+                    "type": "path"
+                },
+                {
+                    "background": "#78DCE8",
+                    "foreground": "#2D2A2E",
+                    "properties": {
+                        "style": "full"
+                    },
+                    "style": "diamond",
+                    "template": " {{ .Path }} ",
+                    "type": "path",
+                    "trailing_diamond": "\uE0B4 "
+                },
+                {
+                    "leading_diamond": " \ue0b6",
+                    "style": "diamond",
+                    "background": "#2D2A2E",
+                    "foreground_templates": [
+                        "{{ if or (.Working.Changed) (.Staging.Changed) }}#FC9867{{ end }}",
+                        "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FF6188{{ end }}",
+                        "{{ if gt .Ahead 0 }}#AB9DF2{{ end }}",
+                        "{{ if gt .Behind 0 }}#AB9DF2{{ end }}" 
+                    ],
+                    "template": "\uf408 ",
+                    "type": "git"
+                },
+                {
+                    "foreground": "#2D2A2E",
+                    "background_templates": [
+                        "{{ if or (.Working.Changed) (.Staging.Changed) }}#FC9867{{ end }}",
+                        "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FF6188{{ end }}",
+                        "{{ if gt .Ahead 0 }}#AB9DF2{{ end }}",
+                        "{{ if gt .Behind 0 }}#AB9DF2{{ end }}"
+                    ],
+                    "properties": {
+                        "branch_max_length": 25,
+                        "fetch_stash_count": true,
+                        "fetch_status": true,
+                        "fetch_upstream_icon": true
+                    },
+                    "trailing_diamond": "\uE0B4 ",
+                    "style": "diamond",
+                    "template": " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+                    "type": "git"
+                }
+            ],
+            "type": "prompt"
+        },
+        {
+            "alignment": "right",
+            "segments": [
+                {
+                    "style": "diamond",
+                    "background": "#FCFCFA",
+                    "template": "\uf00d ",
+                    "leading_diamond": "\ue0b6",
+                    "type": "status"
+                },
+                {
+                    "type": "status",
+                    "style": "diamond",
+                    "foreground": "#FCFCFA",
+                    "background": "#2D2A2E",
+                    "trailing_diamond": "\uE0B4 ",
+                    "foreground_templates": [
+                        "{{ if gt .Code 0 }}#FF6188{{ end }}"
+                    ],
+                    "template": " x{{ reason .Code }} "
+                },
+                {
+                    "foreground": "#FCFCFA",
+                    "foreground_templates": [
+                        "{{ if gt .Code 0 }}#FF6188{{ end }}"
+                    ],
+                    "properties": {
+                        "style": "roundrock",
+                        "always_enabled": true
+                    },
+                    "leading_diamond": "\ue0b6",
+                    "style": "diamond",
+                    "background": "#2D2A2E",
+                    "template": "{{ .FormattedMs }}",
+                    "type": "executiontime",
+                    "trailing_diamond": "\uE0B4 "
+                },
+                {
+                    "leading_diamond": " \ue0b6",
+                    "style": "diamond",
+                    "background": "#FF6188",
+                    "foreground": "#2D2A2E",
+                    "template": "\ue795 ",
+                    "type": "shell"
+                },
+                {
                     "type": "shell",
-                    "style": "plain",
-                    "foreground": "#F92672",
+                    "style": "diamond",
+                    "foreground": "#FCFCFA",
+                    "background": "#2D2A2E",
+                    "trailing_diamond": "\uE0B4 ",
                     "properties": {
                         "mapped_shell_names": {
                             "pwsh": "PS",
@@ -34,127 +139,26 @@
                             "fish": "fish"
                         }
                     },
-                    "template": " \ue795 {{ .Name }} "
+                    "template": " {{ .Name }}"
+                },
+                {
+                    "style": "diamond",
+                    "background": "#AB9DF2",
+                    "foreground": "#2D2A2E",
+                    "template": "\uf308 ",
+                    "leading_diamond": " \ue0b6",
+                    "type": "kubectl"
                 },
                 {
                     "type": "kubectl",
-                    "style": "plain",
-                    "foreground": "#AE81FF",
-                    "template": "\uf308 {{.Context}}{{if .Namespace}} -> {{.Namespace}}{{end}} ",
+                    "style": "diamond",
+                    "background": "#2D2A2E",
+                    "trailing_diamond": "\uE0B4 ",
+                    "foreground": "#FCFCFA",
+                    "template": " {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}",
                     "properties": {
                         "display_error": true
                     }
-                },
-                {
-                    "foreground": "#C39AC9",
-                    "foreground_templates": [
-                        "{{ if or (.Working.Changed) (.Staging.Changed) }}#FC9867{{ end }}",
-                        "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FC618D{{ end }}",
-                        "{{ if gt .Ahead 0 }}#C39AC9{{ end }}",
-                        "{{ if gt .Behind 0 }}#C39AC9{{ end }}"
-                    ],
-                    "properties": {
-                        "branch_max_length": 25,
-                        "fetch_stash_count": true,
-                        "fetch_status": true,
-                        "fetch_upstream_icon": true
-                    },
-                    "style": "plain",
-                    "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
-                    "type": "git"
-                }
-            ],
-            "type": "prompt"
-        },
-        {
-            "alignment": "right",
-            "segments": [
-                {
-                    "type": "status",
-                    "style": "plain",
-                    "foreground": "#F8F8F2",
-                    "foreground_templates": [
-                        "{{ if gt .Code 0 }}#FC618D{{ end }}"
-                    ],
-                    "template": "\uf00d x{{ reason .Code }}"
-                },
-                {
-                    "foreground": "#F8F8F2",
-                    "foreground_templates": [
-                        "{{ if gt .Code 0 }}#FC618D{{ end }}"
-                    ],
-                    "properties": {
-                        "style": "roundrock",
-                        "always_enabled": true
-                    },
-                    "style": "diamond",
-                    "template": "\uf0e7 {{ .FormattedMs }} ",
-                    "type": "executiontime"
-                }
-            ],
-            "type": "prompt"
-        },
-        {
-            "alignment": "left",
-            "newline": true,
-            "segments": [
-                {
-                    "foreground": "#FF9B50",
-                    "properties": {
-                        "style": "full"
-                    },
-                    "style": "plain",
-                    "template": "\uf07c {{ .Path }}",
-                    "type": "path"
-                }
-            ],
-            "type": "prompt"
-        },
-        {
-            "alignment": "left",
-            "newline": true,
-            "segments": [
-                {
-                    "foreground": "#F8F8F2",
-                    "style": "plain",
-                    "template": "\uf120",
-                    "type": "root"
-                },
-                {
-                    "type": "python",
-                    "style": "plain",
-                    "foreground": "#66D9EF",
-                    "template": "\uE235 {{ .Full }}"
-                },
-                {
-                    "type": "node",
-                    "style": "plain",
-                    "foreground": "#A6E22E",
-                    "template": "\ue718 {{ .Full }}"
-                },
-                {
-                    "type": "java",
-                    "style": "plain",
-                    "foreground": "#F92672",
-                    "template": "\ue256 {{ if .Full }}{{ .Full }}{{ else }}Java{{ end }}",
-                    "properties": {
-                        "fetch_version": true,
-                        "display_version": true,
-                        "display_mode": "files",
-                        "home_enabled": true
-                    }
-                },
-                {
-                    "type": "go",
-                    "style": "plain",
-                    "foreground": "#A6E22E",
-                    "template": "\uFCD1 {{ if .Full }}{{ .Full }}{{ else }}Go{{ end }}"
-                },
-                {
-                    "foreground": "#F8F8F2",
-                    "style": "plain",
-                    "template": " \u276f",
-                    "type": "text"
                 }
             ],
             "type": "prompt"
@@ -162,9 +166,9 @@
     ],
     "final_space": true,
     "version": 3,
-    "transient_prompt": {  
-    "background": "transparent",
-    "foreground": "#F8F8F2",
-    "template": " \u276f "
+    "transient_prompt": {
+        "background": "transparent",
+        "foreground": "#FCFCFA",
+        "template": " -> "
     }
 }

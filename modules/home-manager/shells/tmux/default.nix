@@ -32,22 +32,22 @@
           set -g @catppuccin_window_current_text "#W#{?window_zoomed_flag,(),}"
 
           # Window colors
-          set -g @catppuccin_window_default_background "#363537"
-          set -g @catppuccin_window_default_foreground "#FDF9F3"
-          set -g @catppuccin_window_current_background "#FC618D"
-          set -g @catppuccin_window_current_foreground "#222223"
+          set -g @catppuccin_window_default_background "#69666C" 
+          set -g @catppuccin_window_default_foreground "#F7F0FF" 
+          set -g @catppuccin_window_current_background "#FB618D" 
+          set -g @catppuccin_window_current_foreground "#212121" 
           
           # Status modules
           set -g @catppuccin_status_modules_right "user host uptime date_time"          
           set -g @catppuccin_date_time_text "%Y-%m-%d"
           
           # Status colors
-          set -g @catppuccin_directory_color "#7BD88F"
-          set -g @catppuccin_date_time_color "#FD9353"
-          set -g @catppuccin_session_color "#948AE3"
-          set -g @catppuccin_user_color "#FC618D"
-          set -g @catppuccin_host_color "#5AD4E6"
-          set -g @catppuccin_uptime_color "#7BD88F"
+    set -g @catppuccin_directory_color "#7BD78E" # Ansi 2 Color
+set -g @catppuccin_date_time_color "#FC9253" # Ansi 4 Color
+set -g @catppuccin_session_color "#948AE2" # Ansi 5 Color
+set -g @catppuccin_user_color "#FB618D" # Ansi 1 Color
+set -g @catppuccin_host_color "#5AD3E5" # Ansi 6 Color
+set -g @catppuccin_uptime_color "#7BD78E" # Ansi 2 Color
           
           # Status separators
           set -g @catppuccin_status_left_separator  " " 
@@ -57,8 +57,8 @@
           set -g @catppuccin_status_connect_separator "no"
           
           # Additional highlighting
-          set -g @catppuccin_pane_border_style "fg=#363537"
-          set -g @catppuccin_pane_active_border_style "fg=#FC618D"
+          set -g @catppuccin_pane_border_style "fg=#69666C" 
+          set -g @catppuccin_pane_active_border_style "fg=#FB618D"
 
           # styling
           set -g @catppuccin_window_status_style basic

@@ -38,7 +38,6 @@
 
       # tooling
       ll = "ls -la";
-
       
       # git common aliases
       # Common git commands
